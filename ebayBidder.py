@@ -29,19 +29,21 @@ while (timeleftInt > 0):
     driver.get(itemidurl)
     elements = driver.find_element(By.ID, 'prcIsum_bidPrice')
     timeLeft = driver.find_element(By.ID, 'vi-cdown_timeLeft')
-    print('Content:',elements.get_attribute('content'))
-    print('TimeLeft:',timeLeft.text)
-    print(timeLeft.text[-3:-1])
-    lastBid = float(elements.get_attribute('content')) + increment
-    print(lastBid)
-    timeleftInt = int(timeLeft.text[-3:-1])
-    elements = driver.find_element(By.ID, 'MaxBidId')
-    elements.send_keys(lastBid)
-    elements = driver.find_element(By.ID, 'bidBtn_btn')
-    # elements.click()
-    elements = driver.find_element(By.ID, 'confirm_button')
-    # elements.click()
-    timeleftInt = 0
+#     print('Content:',elements.get_attribute('content'))
+#     print('TimeLeft:',timeLeft.text)
+#     print(timeLeft.text[-3:-1])
+    if (lastBid < float(elements.get_attribute('content'))):
+        lastBid = float(elements.get_attribute('content')) + increment
+#         print(lastBid)
+        timeleftInt = int(timeLeft.text[-3:-1])
+        elements = driver.find_element(By.ID, 'MaxBidId')
+        elements.send_keys(lastBid)
+        elements = driver.find_element(By.ID, 'bidBtn_btn')
+        # elements.click()
+        elements = driver.find_element(By.ID, 'confirm_button')
+        # elements.click()
+    #Uncomment line below if you want to test
+    #timeleftInt = 0
 
 time.sleep(20)
 driver.quit()
