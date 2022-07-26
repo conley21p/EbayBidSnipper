@@ -17,9 +17,9 @@ item id url: the url of the item
 max bid ebay: is the Max dollar amount you want to bid
 increment amount: how much more you want to bid than current bid in dollars
 '''
-itemidurl = "https://www.ebay.com/itm/314078573362?hash=item49208ab332:g:bIUAAOSwgFdiqMyC"
-maxbidebay = 10.00
-increment = 1.00
+itemidurl = "https://www.ebay.com/itm/115469471093?epid=28045109684&hash=item1ae2844d75:g:c5oAAOSwwNxi1yA9"
+maxbidebay = 920.00
+increment = 10.00
 lastBid = 0.00
 timeleftInt = 1
 
@@ -30,12 +30,12 @@ driver.get('https://www.ebay.com')
 
 #Cange amount to sleep till you want your bot to start bidding
 time.sleep(30)
-
+driver.get(itemidurl)
 while (timeleftInt > 0):
     print("**************\n\n")
     
     #if you uncomment clicking the confirm button you may be able to uncomment line below
-    driver.get(itemidurl)
+    # driver.get(itemidurl)
     
     elements = driver.find_element(By.ID, 'prcIsum_bidPrice')
     timeLeft = driver.find_element(By.ID, 'vi-cdown_timeLeft')
@@ -62,12 +62,14 @@ while (timeleftInt > 0):
             elements.click()
             try:
                 elements = driver.find_element(By.ID, 'confirm_button')
-                # uncomment to actually buy
-                # elements.click()
+                # uncomment
+                elements.click()
             except:
+                lastBid -= increment
                 print('You were out bid')
-    #time.sleep(20)
-    #timeleftInt = 0
+    time.sleep(20)
+            
+    # timeleftInt = 0
 
 time.sleep(20)
 driver.quit()
