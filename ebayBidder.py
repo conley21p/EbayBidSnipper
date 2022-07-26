@@ -60,13 +60,9 @@ while (timeleftInt > 0):
             elements.send_keys(lastBid)
             elements = driver.find_element(By.ID, 'bidBtn_btn')
             elements.click()
-            try:
-                elements = driver.find_element(By.ID, 'confirm_button')
-                # uncomment
-                elements.click()
-            except:
-                lastBid -= increment
-                print('You were out bid')
+            confirm = driver.find_element(By.CLASS_NAME , 'button-placebid')
+            # uncomment
+            confirm.click()
     time.sleep(20)
             
     # timeleftInt = 0
